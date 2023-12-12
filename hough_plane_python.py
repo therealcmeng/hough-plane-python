@@ -144,7 +144,7 @@ def hough_planes(points, threshold, use_tqdm=True,
 
     fis_len = len(fis)
     thetas_len = len(thetas)
-    accum = np.zeros([fis_len, thetas_len, depth_steps], dtype=np.int)
+    accum = np.zeros([fis_len, thetas_len, depth_steps], dtype=int)
     normals = _calc_normals(fis, thetas)
 
     depth_bounds = list(depth_bounds)
@@ -160,11 +160,11 @@ def hough_planes(points, threshold, use_tqdm=True,
     depth_total_steps = depth_steps + depth_skipped_steps
     points_scaled = points / depth_bounds[1] * depth_total_steps
 
-    fi_idxes = np.zeros([fis_len, thetas_len], dtype=np.int)
+    fi_idxes = np.zeros([fis_len, thetas_len], dtype=int)
     for i in range(len(fis)):
         fi_idxes[i] = i
     fi_idxes = fi_idxes.flatten()
-    theta_idxes = np.zeros([fis_len, thetas_len], dtype=np.int)
+    theta_idxes = np.zeros([fis_len, thetas_len], dtype=int)
     for i in range(len(thetas)):
         theta_idxes[:, i] = i
     theta_idxes = theta_idxes.flatten()
@@ -176,7 +176,7 @@ def hough_planes(points, threshold, use_tqdm=True,
         point = points_scaled[k]
 
         dists = _dot_prod(point, normals) - depth_skipped_steps
-        dists = dists.astype(np.int)
+        dists = dists.astype(int)
         dists = dists.flatten()
 
         mask = (dists >= 0) * (dists < depth_steps)
@@ -224,7 +224,7 @@ def hough_planes(points, threshold, use_tqdm=True,
     planes_out = []
     for k, v in clusters.items():
         logger.debug(f'~~~~~~~~~~~~{k}~~~~~~~~~~~~')
-        cluster = np.array(v, dtype=np.int)
+        cluster = np.array(v, dtype=int)
 
         coords = cluster[:, :3]
         weights = cluster[:, 3]

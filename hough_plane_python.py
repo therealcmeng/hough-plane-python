@@ -18,7 +18,7 @@ def _calc_normals(fis_deg, thetas_deg):
     fis_len = len(fis_deg)
     thetas_len = len(thetas_deg)
 
-    normals = np.zeros((fis_len, thetas_len, 3), dtype=np.float)
+    normals = np.zeros((fis_len, thetas_len, 3), dtype=float)
 
     fis_rad = fis_deg / 180 * np.pi
     thetas_rad = thetas_deg / 180 * np.pi
@@ -83,7 +83,7 @@ def hough_planes(points, threshold, use_tqdm=True,
 
     ---
     General parameters:
-    :param points: 3D points as numpy array with shape=(?, 3) and dtype=np.float
+    :param points: 3D points as numpy array with shape=(?, 3) and dtype=float
     :param threshold: Minimal value in accumulator cell.
     :param use_tqdm: This flag defines whether use tqdm or not for the slowest part of algorithm
     which is filling accumulator with values point by point.

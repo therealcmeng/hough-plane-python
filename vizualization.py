@@ -26,10 +26,10 @@ def _show_data(data, show_zero=True, is_hough_space=False):
     )
     if is_hough_space:
         fig.update_layout(
-            scene=go.Scene(
-                xaxis=go.XAxis(title='φ'),
-                yaxis=go.YAxis(title='θ'),
-                zaxis=go.ZAxis(title='d')
+            scene=go.layout.Scene(
+                xaxis=go.layout.scene.XAxis(title='φ'),
+                yaxis=go.layout.scene.YAxis(title='θ'),
+                zaxis=go.layout.scene.ZAxis(title='d')
             )
         )
 
@@ -114,7 +114,7 @@ def get_plane_polygon_from_vector(vector, radius, steps=20):
         [1, 0, 0],
         [0, 1, 0],
         [0, 0, 1],
-    ], dtype=np.float)
+    ], dtype=float)
 
     for ort in orts:
         cos = abs(get_cos(ort, vector))
